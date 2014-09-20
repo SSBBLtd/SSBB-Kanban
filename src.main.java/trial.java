@@ -21,14 +21,17 @@ public class trial {
 	public String findByID() {
 	
 		
-		String sql = "SELECT * FROM ROLES";
+		String sql = "select * from roles";
 		Connection conn = null;
 		ResultSet rs = null;
 				try {
 					conn = dataSource.getConnection();
 					PreparedStatement ps = conn.prepareStatement(sql);
+					String sql2 = "Select * from roles";
 					rs = ps.executeQuery();
 					ps.executeUpdate();
+					
+					
 					ps.close();
 		 
 				} catch (SQLException e) {
