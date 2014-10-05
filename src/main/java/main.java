@@ -9,11 +9,11 @@ public class main {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"context.xml");
 
-		//trial trialBean = (trial) context.getBean("trialBean");
-		//System.out.println(trialBean.findByID());
+		trial trialBean = (trial) context.getBean("trialBean");
+		System.out.println(trialBean.findByID());
 		
-		projectTrial trial = (projectTrial) context.getBean("project");
-		System.out.println(trial.getRoles());
+		//projectTrial trial = (projectTrial) context.getBean("project");
+		//System.out.println(trial.getRoles());
 	}
 
 }
