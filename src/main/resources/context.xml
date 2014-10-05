@@ -17,14 +17,14 @@
 	">
 
 	<context:annotation-config /> <!-- Used to allow use of annotations in code -->
-<!-- 
+
 	<bean id="persistenceAnnotation"
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
--->
-	<!-- 
+
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-	<property name="persistenceUnitName" value="userService" /> 
+		<!-- <property name="persistenceUnitName" value="userService" /> -->
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -33,7 +33,7 @@
 				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
 			</bean>
 		</property>
-	</bean> -->
+	</bean>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -50,24 +50,16 @@
 		<property name="persistenceUnitName" value="userService" /> <property name="dataSource" 
 		ref="dataSource" /> <property name="jpaVendorAdapter" ref="jpaVendorAdapter" 
 		/> </bean> -->
-	
-	<!-- 
-	<bean id="entityManager"
-		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-
-
+	<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory" /> </bean> 
+		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory" /> <property 
+		name="dataSource" ref="dataSource" /> </bean>
+		
 	<bean id="project" class="projectTrial">
-		<property name="entityManager" ref="entityManager" />
 	</bean>
--->
+	
 	<bean id="trialBean" class="trial">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
