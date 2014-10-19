@@ -61,10 +61,11 @@
 
 	<bean id="DAOImpl" class="com.ssbb.kanban.dao.DAOImpl" />
 
-	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="protoype" />
+	<bean id="role" class="com.ssbb.kanban.data.impl.Role"/>
 
 	<bean id="roleController" class="com.ssbb.kanban.controller.RoleController" />
-
+	
+	<bean id="homeController" class="com.ssbb.kanban.controller.HomeController" />
 
 
 
