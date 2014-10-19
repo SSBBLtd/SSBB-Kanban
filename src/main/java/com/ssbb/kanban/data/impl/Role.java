@@ -20,7 +20,7 @@ public class Role implements Storable {
 	@Column(name = "ID")
 	private int id;
 
-	@Column(name = "role")
+	@Column(name = "TYPE")
 	private String type;
 
 	public int getId() {

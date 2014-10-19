@@ -15,8 +15,8 @@ public class main {
 		RoleDAO roleDAO = (RoleDAO) context.getBean("RoleDAO");
 		Role role = new Role();
 
-		role.setType("Hello");
-		roleDAO.update(role);
+		role.setType("HelloAgain");
+		roleDAO.add(role);
 
 		/*
 		 * trial trialBean = (trial) context.getBean("trialBean");
