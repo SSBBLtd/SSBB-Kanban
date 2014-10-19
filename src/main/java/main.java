@@ -1,29 +1,20 @@
 import java.sql.SQLException;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ssbb.kanban.dao.impl.RoleDAO;
-import com.ssbb.kanban.data.impl.Role;
+import com.ssbb.kanban.dao.DAOImpl;
 
 public class main {
+	@Autowired
+	static DAOImpl dao;
 
 	public static void main(String[] args) throws SQLException {
-		ApplicationContext context = new ClassPathXmlApplicationContext(
-				"context.xml");
-
-		RoleDAO roleDAO = (RoleDAO) context.getBean("RoleDAO");
-		Role role = new Role();
-
-		role.setType("HelloAgain");
-		roleDAO.add(role);
-
 		/*
-		 * trial trialBean = (trial) context.getBean("trialBean");
-		 * System.out.println(trialBean.findByID());
+		 * ApplicationContext context = new ClassPathXmlApplicationContext(
+		 * "context.xml");
+		 * 
+		 * RoleDAO roleDAO = (RoleDAO) context.getBean("DAOImpl");
 		 */
-		// projectTrial trial = (projectTrial) context.getBean("project");
-		// System.out.println(trial.getRoles());
-	}
 
+	}
 }

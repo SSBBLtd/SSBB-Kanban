@@ -7,7 +7,6 @@
 <body>
 
 <h1>Hello World!</h1>
-Hello Raymond!
-Hello Ilya
+HELLO!!!
 </body>
 </html>

@@ -11,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.ssbb.kanban.data.Storable;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "Role")
 public class Role implements Storable {
 
 	@Id

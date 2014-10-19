@@ -16,7 +16,7 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 	">
 
-	
+
 	<context:annotation-config /> <!-- Used to allow use of annotations in code -->
 	<tx:annotation-driven /> <!--This is used to allow @Transactional annotation to work -->
 
@@ -41,38 +41,31 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://sql3.freemysqlhosting.net/sql348458" />
+		<property name="url"
+			value="jdbc:mysql://sql3.freemysqlhosting.net/sql348458" />
 		<property name="username" value="sql348458" />
 		<property name="password" value="gA4*eK6%" />
 	</bean>
-	<!-- <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> 
-		<property name="showSql" value="true" /> <property name="generateDdl" value="false" 
-		/> <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" 
-		/> </bean> <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
-		<property name="persistenceUnitName" value="userService" /> <property name="dataSource" 
-		ref="dataSource" /> <property name="jpaVendorAdapter" ref="jpaVendorAdapter" 
-		/> </bean> -->
+
 
 	<bean id="entityManager"
 		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="project" class="projectTrial">
-	</bean>
 
-	<bean id="trialBean" class="trial">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+	<bean id="DAOImpl" class="com.ssbb.kanban.dao.DAOImpl" />
 
-	<bean id="RoleDAO" class=" com.ssbb.kanban.dao.impl.RoleDAO">
-		<property name="EntityManager" ref="entityManager" />
-	</bean>
+	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="protoype" />
+
+	<bean id="roleController" class="com.ssbb.kanban.controller.RoleController" />
+
+
 
 
 </beans>

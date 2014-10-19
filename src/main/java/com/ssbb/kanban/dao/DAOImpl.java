@@ -1,20 +1,21 @@
 package com.ssbb.kanban.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssbb.kanban.data.Storable;
 
-public abstract class DAOImpl<Entity extends Storable> {
+public class DAOImpl<Entity extends Storable> {
 
-	private EntityManager em;
-
+	@Autowired
 	@PersistenceContext
-	public void setEntityManager(EntityManager em) {
-		this.em = em;
-	}
+	private EntityManager em;
 
 	@Transactional
 	public void add(Entity entity) {
@@ -36,4 +37,10 @@ public abstract class DAOImpl<Entity extends Storable> {
 		return entity;
 	}
 
+	@SuppressWarnings("rawtypes")
+	public List getAll(Class className) {
+		Query q = em.createNativeQuery(
+				"select * from " + className.getSimpleName(), className);
+		return q.getResultList();
+	}
 }
