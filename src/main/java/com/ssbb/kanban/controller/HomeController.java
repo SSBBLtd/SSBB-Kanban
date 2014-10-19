@@ -11,6 +11,11 @@ public class HomeController {
 		return "home";
 	}
 
+	@RequestMapping(value = "login")
+	public String login() {
+		return "landing";
+	}
+
 	@RequestMapping(value = "/trial2")
 	public String trailPage() {
 		return "trial2";
