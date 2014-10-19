@@ -61,7 +61,7 @@
 
 	<bean id="DAOImpl" class="com.ssbb.kanban.dao.DAOImpl" />
 
-	<bean id="role" class="com.ssbb.kanban.data.impl.Role"/>
+	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="prototype"/>
 
 	<bean id="roleController" class="com.ssbb.kanban.controller.RoleController" />
 	

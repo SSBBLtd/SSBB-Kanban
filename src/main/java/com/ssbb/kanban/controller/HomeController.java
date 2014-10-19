@@ -1,5 +1,7 @@
 package com.ssbb.kanban.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,12 +14,14 @@ import com.ssbb.kanban.data.impl.Role;
 public class HomeController {
 
 	@Autowired
-	private Role role;
+	private Role role, role2;
 
-	@RequestMapping(value = "/home")
-	public String loadHome(ModelMap map) {
-		map.put("role", role);
-		return "/home";
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String loadHome(HttpServletRequest request, ModelMap map) {
+		role2.setType("Admin");
+		request.getSession().setAttribute("role", role2);
+		// map.put("role", role);
+		return "home";
 	}
 
 	/*
@@ -30,9 +34,10 @@ public class HomeController {
 		return "landing";
 	}
 
-	@RequestMapping(value = "/trial2")
-	public String trailPage() {
-		return "trial2";
+	@RequestMapping(value = "/landing", method = RequestMethod.GET)
+	public String loadLanding(HttpServletRequest request) {
+		request.getSession().setAttribute("role", role2);
+		return "landing";
 	}
 
 }
