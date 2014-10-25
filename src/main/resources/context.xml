@@ -19,7 +19,10 @@
 
 	<context:annotation-config /> <!-- Used to allow use of annotations in code -->
 	<tx:annotation-driven /> <!--This is used to allow @Transactional annotation to work -->
-
+	<context:property-placeholder location="classpath:database.properties" /> <!-- Loads the specified properties file -->
+	 
+	<import resource="datasource.xml" />
+	
 	<bean id="persistenceAnnotation"
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
@@ -36,17 +39,6 @@
 			</bean>
 		</property>
 	</bean>
-
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="jdbc:mysql://sql3.freemysqlhosting.net/sql348458" />
-		<property name="username" value="sql348458" />
-		<property name="password" value="gA4*eK6%" />
-	</bean>
-
 
 	<bean id="entityManager"
 		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
