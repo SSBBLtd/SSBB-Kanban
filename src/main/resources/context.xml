@@ -19,6 +19,7 @@
 
 	<context:annotation-config /> <!-- Used to allow use of annotations in code -->
 	<tx:annotation-driven /> <!--This is used to allow @Transactional annotation to work -->
+	<aop:aspectj-autoproxy /> <!-- Enables AOP with AspectJ -->
 	
 	<import resource="datasource.xml" />
 	

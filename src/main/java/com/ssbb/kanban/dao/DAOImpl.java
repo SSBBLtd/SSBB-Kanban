@@ -11,6 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssbb.kanban.data.Storable;
 
+/**
+ * This class contains methods for basic CRUD (Create, Read, Update,
+ * Delete) operations for all data objects. All object specific DAOs will
+ * extend this class.
+ * 
+ * @author Ilya Skliarov, Raymond Tong
+ *
+ * @param <Entity> The object on which a CRUD operation is performed
+ */
 public class DAOImpl<Entity extends Storable> {
 
 	@Autowired
