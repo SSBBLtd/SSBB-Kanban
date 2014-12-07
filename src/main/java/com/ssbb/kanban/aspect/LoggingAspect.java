@@ -7,17 +7,21 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Aspect
 public class LoggingAspect {
 
-	private final static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
-	
+	private final static Logger logger = LoggerFactory
+			.getLogger(LoggingAspect.class);
+
 	@Around("execution(* aroundMethod(..))")
-	public void aroundSetMethod(ProceedingJoinPoint joinPoint){
+	public void aroundSetMethod(ProceedingJoinPoint joinPoint) {
 		String method = joinPoint.getSignature().getName();
 		String args = Arrays.toString(joinPoint.getArgs());
-		try{
+		String hashedPassword = BCrypt.hashpw("test123", BCrypt.gensalt(3));
+
+		try {
 			logger.info("Entering method: {}({})", method, args);
 			joinPoint.proceed();
 			logger.info("Exiting method: {}({})", method, args);
@@ -27,5 +31,5 @@ public class LoggingAspect {
 			logger.error("Unable to proceed in joinpoint");
 		}
 	}
-	
+
 }

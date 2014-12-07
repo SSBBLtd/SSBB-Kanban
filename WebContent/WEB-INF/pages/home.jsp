@@ -18,8 +18,9 @@
 	
 	<br/>
 	Your role is ${role.type}
-	<form action="landing" method="GET">
-		<input class="button" type="submit" value="landing" />
+	<form action="login" method="GET">
+		<input class="button" type="submit" value=login />
+		<input type='<c:set></c:set>'>
 	</form>
 
 

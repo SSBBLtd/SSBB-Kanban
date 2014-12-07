@@ -8,13 +8,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ssbb.kanban.dao.impl.UserDAO;
 import com.ssbb.kanban.data.impl.Role;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	private Role role, role2;
+	private Role role;
+
+	@Autowired
+	private UserDAO userDAO;
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String loadHome(HttpServletRequest request, ModelMap map) {
