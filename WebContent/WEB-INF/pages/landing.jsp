@@ -13,7 +13,7 @@
 <body>
 
 <br/>
-	Your role is ${role.type}
+<h1>Landing Page</h1>
 	<form action="home" method="GET">
 		<input class="button" type="submit" value="home" />
 	</form>

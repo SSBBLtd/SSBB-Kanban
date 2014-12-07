@@ -13,21 +13,20 @@
 <body>
 
 
-	<h1>Hello World!</h1>
-	Hello Raymond! Hello Ilya
-
-	<form action="login" method="GET">
-		<input class="button" type="submit" value=login />
-	</form>
-	<br/>
-	<form action="register">
+	<h1>Registration Page</h1>
+	<br />
+	<f:form action="register/register" method="POST" commandName="user">
+		<f:input type="text" value="First Name" path="firstName" />
+		<f:input type="text" value="Last Name" path="lastName" />
+		<f:input type="text" value="email" path="email" />
+		<f:password value="Password" path="password" />
+		<br />
 		<input class="button" type="submit" value=Register />
+	</f:form>
+	<br />
+	<form action="home" method="GET">
+		<input class="button" type="submit" value="Home" />
 	</form>
-
-
-
-
-
 
 </body>
 </html>
