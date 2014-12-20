@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>SSBB</title>
+<title>SSBB Registration</title>
 </head>
 <body>
 
@@ -16,10 +16,13 @@
 	<h1>Registration Page</h1>
 	<br />
 	<f:form action="register/register" method="POST" commandName="user">
-		<f:input type="text" value="First Name" path="firstName" />
-		<f:input type="text" value="Last Name" path="lastName" />
-		<f:input type="text" value="email" path="email" />
-		<f:password value="Password" path="password" />
+		First Name<f:input type="text" path="firstName" />
+		<br/>
+		Last name<f:input type="text" path="lastName" />
+		<br/>
+		email <f:input type="text" path="email" />
+		<br/>
+		Password<f:password path="password" />
 		<br />
 		<input class="button" type="submit" value=Register />
 	</f:form>

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,6 +32,17 @@ public class User implements Storable {
 
 	@Column(name = "password")
 	private String password;
+
+	@Transient
+	private boolean loggedIn;
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.loggedIn = isLoggedIn;
+	}
 
 	public String getFirstName() {
 		return firstName;

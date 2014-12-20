@@ -1,6 +1,6 @@
 package com.ssbb.kanban.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,20 +20,13 @@ public class HomeController {
 	@Autowired
 	private User user;
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String loadHome(HttpServletRequest request, ModelMap map) {
-		request.getSession().setAttribute("user", user);
-		map.addAttribute("user", user);
+	@RequestMapping(value = "home", method = RequestMethod.GET)
+	public String loadHome(ModelMap map, HttpSession session) {
+		User user = (User) map.get("user");
+		if (user != null && !user.isLoggedIn()) {
+			map.remove("user");
+			session.removeAttribute("user");
+		}
 		return "home";
 	}
-
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(User user) {
-		return "landing";
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }

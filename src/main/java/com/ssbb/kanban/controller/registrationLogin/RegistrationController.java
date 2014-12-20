@@ -1,6 +1,6 @@
-package com.ssbb.kanban.controller;
+package com.ssbb.kanban.controller.registrationLogin;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,22 +19,22 @@ public class RegistrationController {
 
 	@Autowired
 	private User user;
-	
+
 	@Autowired
 	private RegistrationLoginHelper helper;
 
 	@RequestMapping(value = "register", method = RequestMethod.GET)
-	public String loadRegister(HttpServletRequest request, ModelMap map) {
-		request.getSession().setAttribute("user", user);
-		map.addAttribute("user",
-				(User) request.getSession().getAttribute("user"));
+	public String loadRegister(ModelMap map) {
+		map.addAttribute(user);
 		return "register";
 	}
 
 	@RequestMapping(value = "register/register", method = RequestMethod.POST)
-	public String register(HttpServletRequest request, User user) {
+	public String register(HttpSession session, User user) {
+		System.out.println(user.isLoggedIn());
+		user.setLoggedIn(true);
 		userDAO.add(user);
-		return "redirect:/login";
+		session.setAttribute("user", user);
+		return "redirect:/landing";
 	}
-
 }

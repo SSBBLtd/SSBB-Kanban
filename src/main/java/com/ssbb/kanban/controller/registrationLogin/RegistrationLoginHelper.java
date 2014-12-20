@@ -1,4 +1,4 @@
-package com.ssbb.kanban.controller;
+package com.ssbb.kanban.controller.registrationLogin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;

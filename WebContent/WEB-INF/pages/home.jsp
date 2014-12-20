@@ -14,20 +14,33 @@
 
 
 	<h1>Hello World!</h1>
-	Hello Raymond! Hello Ilya
+	<br /> Hello Raymond! Hello Ilya
+
+
+
 
 	<form action="login" method="GET">
-		<input class="button" type="submit" value=login />
+		<br /> <input class="button" type="submit" value=login />
 	</form>
-	<br/>
-	<form action="register">
-		<input class="button" type="submit" value=Register />
-	</form>
-
-
-
-
-
+	<br />
+	<c:choose>
+		<c:when test="${not user.loggedIn}">
+			<form action="register">
+				<input class="button" type="submit" value=Register />
+			</form>
+		</c:when>
+		<c:otherwise>
+			<h2>You are logged in as ${user.firstName} ${user.lastName}</h2>
+			<form action="landing" method="GET">
+				<input class="button" type="submit"
+					value="Go to your account" />
+			</form>
+			<form action="logout" method="POST">
+				<input class="button" type="submit"
+					value="Logout" />
+			</form>			
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>

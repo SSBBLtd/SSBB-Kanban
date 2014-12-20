@@ -8,15 +8,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Landing Page</title>
 </head>
 <body>
 
-<br/>
-<h1>Landing Page</h1>
+	<br />
+	<h1>Landing Page</h1>
+
+	<h1>Welcome ${user.firstName} ${user.lastName}</h1>
 	<form action="home" method="GET">
 		<input class="button" type="submit" value="home" />
 	</form>
-
+	<br />
+	<form action="logout" method="POST">
+		<input class="button" type="submit" value="Logout" />
+	</form>
 </body>
 </html>
