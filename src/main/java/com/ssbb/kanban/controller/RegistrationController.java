@@ -19,6 +19,9 @@ public class RegistrationController {
 
 	@Autowired
 	private User user;
+	
+	@Autowired
+	private RegistrationLoginHelper helper;
 
 	@RequestMapping(value = "register", method = RequestMethod.GET)
 	public String loadRegister(HttpServletRequest request, ModelMap map) {

@@ -64,6 +64,8 @@
 	<bean id="userController" class="com.ssbb.kanban.controller.UserController" />
 	
 	<bean id="homeController" class="com.ssbb.kanban.controller.HomeController" />
+	
+	<bean id="registrationLoginHelper" class="com.ssbb.kanban.controller.RegistrationLoginHelper" />
 
 
 
