@@ -29,12 +29,24 @@ public class RegistrationController {
 		return "register";
 	}
 
+	/**Method to register a new user. Registration will fail if the email address has already been used
+	 * 
+	 * @author Ilya Skliarov, Raymond Tong
+	 * 
+	 * @param session
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value = "register/register", method = RequestMethod.POST)
 	public String register(HttpSession session, User user) {
-		System.out.println(user.isLoggedIn());
-		user.setLoggedIn(true);
-		userDAO.add(user);
-		session.setAttribute("user", user);
-		return "redirect:/landing";
+		String email = user.getEmail();
+		if (!helper.userExists(email)) {
+			user.setLoggedIn(true);
+			userDAO.add(user);
+			session.setAttribute("user", user);
+			return "redirect:/landing";
+		}
+		return "redirect:/home";
 	}
+	
 }

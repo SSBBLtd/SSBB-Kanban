@@ -10,12 +10,7 @@ public class UserDAOTest {
 
 	@Test
 	public void test() {
-		ApplicationContext context = new ClassPathXmlApplicationContext(
-				"context.xml");
-		UserDAO userDAO = (UserDAO) context.getBean("UserDAO");
 
-		User u = userDAO.getUserByEmail("ilya.skilarov@ssbb.com");
-		System.out.println(u.getEmail());
 	}
 
 }

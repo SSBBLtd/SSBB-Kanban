@@ -58,10 +58,6 @@
 	<bean id="user" class="com.ssbb.kanban.data.impl.User" scope="prototype"/>
 
 	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="prototype"/>
-
-	<bean id="roleController" class="com.ssbb.kanban.controller.RoleController" />
-	
-	<bean id="userController" class="com.ssbb.kanban.controller.UserController" />
 	
 	<bean id="registrationLoginHelper" class="com.ssbb.kanban.controller.registrationLogin.RegistrationLoginHelper" />
 
