@@ -13,18 +13,15 @@
 <body>
 
 
-	<h1>Hello World!</h1>
+	<h1>SSBB Kanban</h1>
 	<br /> Hello Raymond! Hello Ilya
 
-
-
-
-	<form action="login" method="GET">
-		<br /> <input class="button" type="submit" value=login />
-	</form>
-	<br />
 	<c:choose>
 		<c:when test="${not user.loggedIn}">
+			<form action="login" method="GET">
+				<input class="button" type="submit" value=login />
+			</form>
+			<br />
 			<form action="register">
 				<input class="button" type="submit" value=Register />
 			</form>
@@ -32,13 +29,11 @@
 		<c:otherwise>
 			<h2>You are logged in as ${user.firstName} ${user.lastName}</h2>
 			<form action="landing" method="GET">
-				<input class="button" type="submit"
-					value="Go to your account" />
+				<input class="button" type="submit" value="Go to your account" />
 			</form>
 			<form action="logout" method="POST">
-				<input class="button" type="submit"
-					value="Logout" />
-			</form>			
+				<input class="button" type="submit" value="Logout" />
+			</form>
 		</c:otherwise>
 	</c:choose>
 
