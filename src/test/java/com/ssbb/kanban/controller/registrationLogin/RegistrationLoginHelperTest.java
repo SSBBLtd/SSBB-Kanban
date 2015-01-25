@@ -58,4 +58,9 @@ public class RegistrationLoginHelperTest {
 		assertTrue(helper.passwordCorrect(password));
 	}
 
+	@Test
+	public void testHashPw() {
+		helper.hashpw(user);
+		verify(user).setPassword(anyString());
+	}
 }
