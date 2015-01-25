@@ -9,6 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SSBB</title>
+<link rel="stylesheet" href="<c:url value="/resources/styling.css" />"
+	type="text/css" />
 </head>
 <body>
 
