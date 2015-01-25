@@ -18,9 +18,13 @@
 
 	<c:choose>
 		<c:when test="${not user.loggedIn}">
-			<form action="login" method="GET">
+			<f:form action="login" method="POST" commandName="user">
+				email <f:input type="text" path="email" />
+				<br /> 
+				Password <f:password path="password" />
+				<br />
 				<input class="button" type="submit" value=login />
-			</form>
+			</f:form>
 			<br />
 			<form action="register">
 				<input class="button" type="submit" value=Register />

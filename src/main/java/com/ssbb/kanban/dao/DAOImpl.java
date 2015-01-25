@@ -2,6 +2,7 @@ package com.ssbb.kanban.dao;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssbb.kanban.data.Storable;
+import com.ssbb.kanban.data.impl.User;
 
 /**
  * This class contains methods for basic CRUD (Create, Read, Update, Delete)
@@ -53,4 +55,5 @@ public class DAOImpl<Entity extends Storable> {
 				"select * from " + className.getSimpleName(), className);
 		return q.getResultList();
 	}
+
 }

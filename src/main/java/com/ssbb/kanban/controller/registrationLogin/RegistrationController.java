@@ -42,6 +42,7 @@ public class RegistrationController {
 		String email = user.getEmail();
 		if (!helper.userExists(email)) {
 			user.setLoggedIn(true);
+			helper.hashpw(user);
 			userDAO.add(user);
 			session.setAttribute("user", user);
 			return "redirect:/landing";

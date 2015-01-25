@@ -8,7 +8,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import com.ssbb.kanban.data.Storable;
 
@@ -74,7 +73,6 @@ public class User implements Storable {
 	}
 
 	public void setPassword(String password) {
-		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		this.password = password;
 	}
 

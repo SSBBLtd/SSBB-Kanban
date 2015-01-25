@@ -2,6 +2,7 @@ package com.ssbb.kanban.controller.registrationLogin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ssbb.kanban.dao.impl.UserDAO;
 import com.ssbb.kanban.data.impl.User;
@@ -26,7 +27,7 @@ public class RegistrationLoginHelper {
 	protected boolean userExists(String email) {
 		if (email != null) {
 			user = userDao.getUserByEmail(email);
-			if (user != null) {
+			if (null != user) {
 				return true;
 			}
 		}
@@ -44,4 +45,7 @@ public class RegistrationLoginHelper {
 		return BCrypt.checkpw(password, user.getPassword());
 	}
 
+	protected void hashpw(User user) {
+		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+	}
 }
