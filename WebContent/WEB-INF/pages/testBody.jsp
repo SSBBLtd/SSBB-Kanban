@@ -1,4 +1,3 @@
-
 <tiles:insertDefinition name="testBody" />
 
 <h1>SSBB Kanban</h1>

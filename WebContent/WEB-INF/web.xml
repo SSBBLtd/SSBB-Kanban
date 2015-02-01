@@ -11,16 +11,20 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- This is commented out because it loads the jsp without hitting the controller. 
-	We want to load the controller to perform logic before the jsp is displayed.  -->
-	<!-- <welcome-file-list>
-		<welcome-file>/WEB-INF/pages/home.jsp</welcome-file>
-	</welcome-file-list> -->
+	<!-- This is commented out because it loads the jsp without hitting the 
+		controller. We want to load the controller to perform logic before the jsp 
+		is displayed. -->
+	<!-- <welcome-file-list> <welcome-file>/WEB-INF/pages/home.jsp</welcome-file> 
+		</welcome-file-list> -->
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 		<!-- <url-pattern>/home</url-pattern> -->
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>jsp</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+	</servlet>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>

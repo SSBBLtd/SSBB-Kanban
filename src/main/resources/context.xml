@@ -20,9 +20,10 @@
 	<context:annotation-config /> <!-- Used to allow use of annotations in code -->
 	<tx:annotation-driven /> <!--This is used to allow @Transactional annotation to work -->
 	<aop:aspectj-autoproxy /> <!-- Enables AOP with AspectJ -->
-	
+
 	<import resource="datasource.xml" />
-	
+
+
 	<bean id="persistenceAnnotation"
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
@@ -52,13 +53,16 @@
 
 
 	<bean id="DAOImpl" class="com.ssbb.kanban.dao.DAOImpl" />
-	
-	<bean id="UserDAO" class="com.ssbb.kanban.dao.impl.UserDAO" />
-	
-	<bean id="user" class="com.ssbb.kanban.data.impl.User" scope="prototype"/>
 
-	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="prototype"/>
-	
-	<bean id="registrationLoginHelper" class="com.ssbb.kanban.controller.registrationLogin.RegistrationLoginHelper" />
+	<bean id="UserDAO" class="com.ssbb.kanban.dao.impl.UserDAO" />
+
+	<bean id="user" class="com.ssbb.kanban.data.impl.User" scope="prototype" />
+
+	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="prototype" />
+
+	<bean id="registrationLoginHelper"
+		class="com.ssbb.kanban.controller.registrationLogin.RegistrationLoginHelper" />
+
+	<import resource="spring_tiles_configuration.xml" />
 
 </beans>
