@@ -1,21 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <tiles:insertDefinition name="home" />
+ --%>
 
-
-<html>
+<%-- <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SSBB</title>
 <link rel="stylesheet" href="<c:url value="/resources/styling.css" />"
 	type="text/css" />
 </head>
-<body>
-
+<body> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
 
 	<h1>SSBB Kanban</h1>
 	<br /> Hello Raymond! Hello Ilya
@@ -45,5 +46,5 @@
 		</c:otherwise>
 	</c:choose>
 
-</body>
-</html>
+<!-- </body>
+</html> -->

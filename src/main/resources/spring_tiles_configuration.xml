@@ -31,7 +31,7 @@
 			</bean>
 		</property>
 	</bean>
-	<bean id="tilesViewResolver"
+<!-- 	<bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
@@ -42,7 +42,10 @@
 		class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
 		<property name="basename" value="views" />
 		<property name="order" value="#{tilesViewResolver.order+1}" />
-	</bean>
+	</bean> -->
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+
 
 	<!-- Helper class to configure Tiles 3.x for the Spring Framework -->
 	<!-- See http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/web/servlet/view/tiles2/TilesConfigurer.html -->

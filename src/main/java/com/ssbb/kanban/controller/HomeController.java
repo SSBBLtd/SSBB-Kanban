@@ -30,6 +30,6 @@ public class HomeController {
 			map.addAttribute("user", user);
 		}
 		
-		return "testBody";
+		return "home";
 	}
 }
