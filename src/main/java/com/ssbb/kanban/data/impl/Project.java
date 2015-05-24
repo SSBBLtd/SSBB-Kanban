@@ -1,10 +1,13 @@
 package com.ssbb.kanban.data.impl;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,6 +28,17 @@ public class Project implements Storable {
 
 	@Column(name = "description")
 	private String description;
+
+	@Transient
+	private List<User> userList;
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
 
 	public String getDescription() {
 		return description;
