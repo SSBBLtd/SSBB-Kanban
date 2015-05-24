@@ -11,8 +11,8 @@ import org.hibernate.annotations.GenericGenerator;
 import com.ssbb.kanban.data.Storable;
 
 @Entity
-@Table(name = "roles")
-public class Role implements Storable {
+@Table(name = "projects")
+public class Project implements Storable {
 
 	@Id
 	@GenericGenerator(name = "gen", strategy = "increment")
@@ -20,19 +20,31 @@ public class Role implements Storable {
 	@Column(name = "ID")
 	private int id;
 
-	@Column(name = "TYPE")
-	private String type;
+	@Column(name = "name")
+	private String name;
 
+	@Column(name = "description")
+	private String description;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
 	public int getId() {
 		return id;
 	}
 
-	public String getType() {
-		return type;
+	public String getName() {
+		return name;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

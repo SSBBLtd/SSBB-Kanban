@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ssbb.kanban.dao.impl.UserDAO;
 import com.ssbb.kanban.data.impl.User;
+import com.ssbb.kanban.utils.StringHelper;
 
 public class RegistrationLoginHelper {
 
@@ -25,7 +26,7 @@ public class RegistrationLoginHelper {
 	 * @return
 	 */
 	protected boolean userExists(String email) {
-		if (email != null) {
+		if (!StringHelper.isNullOrEmpty(email)) {
 			user = userDao.getUserByEmail(email);
 			if (null != user) {
 				return true;

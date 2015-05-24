@@ -3,14 +3,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
 
-	<br />
-	<h1>Landing Page</h1>
+<br />
+<h1>Landing Page</h1>
 
-	<h1>Welcome ${user.firstName} ${user.lastName}</h1>
-	<form action="home" method="GET">
-		<input class="button" type="submit" value="home" />
-	</form>
-	<br />
-	<form action="logout" method="POST">
-		<input class="button" type="submit" value="Logout" />
-	</form>
+<h1>Welcome ${user.firstName} ${user.lastName}</h1>
+<form action="home" method="GET">
+	<input class="button" type="submit" value="home" />
+</form>
+<br />
+<form action="logout" method="POST">
+	<input class="button" type="submit" value="Logout" />
+</form>
+<br />
+<a href="#openModal">Create Project</a>
+
+
+<div id="openModal" class="modalDialog">
+	<div>
+		<h1>Hello Mr pop window!</h1>
+		<a href="#close" title="Close" class="close">X</a>
+		<f:form action="createProject" method="POST" commandName="project">
+			<f:input type="text" path="name" />
+			<f:input type="text" path="description" />
+			<input class="button" type="submit" value="Create Project" />
+		</f:form>
+	</div>
+</div>

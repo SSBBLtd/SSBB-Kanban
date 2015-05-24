@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ssbb.kanban.Constants;
 import com.ssbb.kanban.dao.impl.UserDAO;
 import com.ssbb.kanban.data.impl.User;
 
@@ -44,7 +45,7 @@ public class RegistrationController {
 			user.setLoggedIn(true);
 			helper.hashpw(user);
 			userDAO.add(user);
-			session.setAttribute("user", user);
+			session.setAttribute(Constants.USER, user);
 			return "redirect:/landing";
 		}
 		return "redirect:/home";
