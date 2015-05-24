@@ -56,11 +56,14 @@
 
 	<bean id="UserDAO" class="com.ssbb.kanban.dao.impl.UserDAO" />
 
+	<bean id="ProjectDAO" class="com.ssbb.kanban.dao.impl.ProjectDAO" />
+
 	<bean id="user" class="com.ssbb.kanban.data.impl.User" scope="prototype" />
 
 	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="prototype" />
-	
-	<bean id="project" class="com.ssbb.kanban.data.impl.Project" scope="prototype" />
+
+	<bean id="project" class="com.ssbb.kanban.data.impl.Project"
+		scope="prototype" />
 
 	<bean id="registrationLoginHelper"
 		class="com.ssbb.kanban.controller.registrationLogin.RegistrationLoginHelper" />

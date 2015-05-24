@@ -1,5 +1,6 @@
 package com.ssbb.kanban.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssbb.kanban.dao.DAOImpl;
@@ -13,7 +14,7 @@ public class ProjectDAO extends DAOImpl<Storable> {
 
 		int userID = user.getId();
 
-		return null;
+		return new ArrayList<Project>();
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ssbb.kanban.Constants;
+import com.ssbb.kanban.dao.impl.ProjectDAO;
 import com.ssbb.kanban.dao.impl.UserDAO;
 import com.ssbb.kanban.data.impl.Project;
 import com.ssbb.kanban.data.impl.User;
@@ -26,6 +27,9 @@ public class LoginController {
 	@Autowired
 	private Project project;
 
+	@Autowired
+	private ProjectDAO projectDAO;
+
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(ModelMap map, HttpSession session, User user) {
 		if (user != null && !user.isLoggedIn()) {
@@ -41,7 +45,7 @@ public class LoginController {
 					user.setLoggedIn(true);
 					session.setAttribute(Constants.USER, user);
 
-					return "redirect:/landing";
+					return loadLanding(map, session, user);
 				}
 			}
 			// TO DO set Error logic, user/password invalid
@@ -51,9 +55,16 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "landing", method = RequestMethod.GET)
-	public String loadLanding(ModelMap map, HttpSession session) {
+	public String loadLanding(ModelMap map, HttpSession session, User user) {
 		if (null != session.getAttribute(Constants.USER)) {
+
+			// This is for being able to create a new project
 			map.addAttribute(Constants.PROJECT, project);
+
+			if (null == session.getAttribute(Constants.PROJECT_LIST)) {
+				session.setAttribute(Constants.PROJECT_LIST,
+						projectDAO.getProjectsByUser(user));
+			}
 			return "landing";
 		}
 		return "redirect:/home";

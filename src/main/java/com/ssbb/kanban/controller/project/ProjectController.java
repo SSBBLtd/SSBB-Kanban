@@ -1,5 +1,7 @@
 package com.ssbb.kanban.controller.project;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +19,28 @@ public class ProjectController {
 
 	@Autowired
 	private Project project;
-	
+
 	@Autowired
 	private ProjectDAO projectDAO;
-	
-	@RequestMapping(value ="project", method = RequestMethod.GET)
+
+	@RequestMapping(value = "project", method = RequestMethod.GET)
 	public String loadProject(ModelMap map, HttpSession session) {
 		return "project";
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "createProject", method = RequestMethod.POST)
-	public String createProject(ModelMap map, HttpSession session, Project project) {
-				
-		if(null ==session.getAttribute(Constants.PROJECT)){
-			map.addAttribute(Constants.PROJECT, project);
+	public String createProject(ModelMap map, HttpSession session,
+			Project project) {
+		ArrayList<Project> projectList = (ArrayList<Project>) session
+				.getAttribute(Constants.PROJECT_LIST);
+
+		if (null != projectList) {
 			projectDAO.add(project);
+			projectList.add(project);
 		}
-		
+
 		return "redirect:/project";
 	}
-	
+
 }
