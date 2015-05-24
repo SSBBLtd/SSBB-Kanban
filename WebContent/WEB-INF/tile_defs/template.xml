@@ -27,5 +27,10 @@
 		<put-attribute name="title" value = "Register" />
 		<put-attribute name="content" value="/WEB-INF/pages/register.jsp" />
 	</definition>
+	
+	<definition name="project" extends="template">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="content" value="/WEB-INF/pages/project.jsp" />
+	</definition>
 
 </tiles-definitions>
