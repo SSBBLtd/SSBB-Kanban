@@ -1,5 +1,6 @@
 package com.ssbb.kanban.data.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,6 +34,10 @@ public class Project implements Storable {
 	private List<User> userList;
 
 	public List<User> getUserList() {
+		// if list has not been set, then create a new list
+		if (null == this.userList) {
+			setUserList(new ArrayList<User>());
+		}
 		return userList;
 	}
 

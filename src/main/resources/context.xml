@@ -58,6 +58,8 @@
 
 	<bean id="ProjectDAO" class="com.ssbb.kanban.dao.impl.ProjectDAO" />
 
+	<bean id="RoleDAO" class="com.ssbb.kanban.dao.impl.RoleDAO" />
+
 	<bean id="user" class="com.ssbb.kanban.data.impl.User" scope="prototype" />
 
 	<bean id="role" class="com.ssbb.kanban.data.impl.Role" scope="prototype" />

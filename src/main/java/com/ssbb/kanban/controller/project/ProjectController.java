@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ssbb.kanban.Constants;
 import com.ssbb.kanban.dao.impl.ProjectDAO;
 import com.ssbb.kanban.data.impl.Project;
+import com.ssbb.kanban.data.impl.User;
 
 @Controller
 public class ProjectController {
@@ -32,6 +33,11 @@ public class ProjectController {
 	@RequestMapping(value = "createProject", method = RequestMethod.POST)
 	public String createProject(ModelMap map, HttpSession session,
 			Project project) {
+
+		// Add the user who create the project to the project's user list.
+		User user = (User) session.getAttribute(Constants.USER);
+		project.getUserList().add(user);
+
 		ArrayList<Project> projectList = (ArrayList<Project>) session
 				.getAttribute(Constants.PROJECT_LIST);
 

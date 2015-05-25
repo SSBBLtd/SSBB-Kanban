@@ -2,7 +2,6 @@ package com.ssbb.kanban.dao;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssbb.kanban.data.Storable;
-import com.ssbb.kanban.data.impl.User;
 
 /**
  * This class contains methods for basic CRUD (Create, Read, Update, Delete)
@@ -49,6 +47,16 @@ public class DAOImpl<Entity extends Storable> {
 		return entity;
 	}
 
+	/**
+	 * Method returns all entities of className. NOTE: this method will NOT work
+	 * if the className is not the same as the database table name e.g. entity
+	 * uses
+	 * 
+	 * @Table(name = "TableName")
+	 * 
+	 * @param className
+	 * @return List of className objects
+	 */
 	@SuppressWarnings("rawtypes")
 	public List getAll(Class className) {
 		Query q = em.createNativeQuery(
