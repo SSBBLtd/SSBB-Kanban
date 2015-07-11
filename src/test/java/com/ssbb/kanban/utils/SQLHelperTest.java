@@ -24,7 +24,7 @@ public class SQLHelperTest {
 
 		
 		String actualString = SQLHelper.formInsertStatement(table, columns, values);
-		String expectedString = "INSERT INTO TEST_TABLE(ID, NAME, AGE) VALUES(1, JOHN, 35)";
+		String expectedString = "INSERT INTO TEST_TABLE(ID, NAME, AGE) VALUES(1, JOHN, 35) ";
 		assertEquals(expectedString, actualString);
 		
 	}

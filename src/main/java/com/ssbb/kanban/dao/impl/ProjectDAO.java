@@ -13,6 +13,7 @@ import com.ssbb.kanban.data.Storable;
 import com.ssbb.kanban.data.impl.Project;
 import com.ssbb.kanban.data.impl.Role;
 import com.ssbb.kanban.data.impl.User;
+import com.ssbb.kanban.utils.SQLHelper;
 
 public class ProjectDAO extends DAOImpl<Storable> {
 
@@ -26,6 +27,7 @@ public class ProjectDAO extends DAOImpl<Storable> {
 	private static String PROJECT_ID_COLUMN = "upr_project_ID";
 
 	private static String USER_ID_COLUMN = "upr_user_ID";
+	
 
 	/**
 	 * Method to override and persist project and to add list of users and their
@@ -38,7 +40,18 @@ public class ProjectDAO extends DAOImpl<Storable> {
 
 		// Persist the project to the database.
 		super.add(project);
-
+		/*User user = project.getUserList().get(0);
+		String userID = String.valueOf(user.getId());
+		String projectID = String.valueOf(project.getId());
+		
+		String[] columns = {ROLE_ID_COLUMN, PROJECT_ID_COLUMN, USER_ID_COLUMN};
+		String[] values = {"1", projectID, userID};
+		
+		String insertStatement = SQLHelper.formInsertStatement(USER_PROJECT_ROLE_TABLE, columns, values);
+		Query q = em.createNativeQuery(insertStatement);
+		q.executeUpdate();*/
+		
+		/*
 		StringBuffer valuesToBeAdded = new StringBuffer();
 		ArrayList<User> userList = (ArrayList<User>) project.getUserList();
 		ArrayList<Role> listOfAllRoles = (ArrayList<Role>) roleDAO
@@ -71,7 +84,7 @@ public class ProjectDAO extends DAOImpl<Storable> {
 		q = em.createNativeQuery("insert into " + USER_PROJECT_ROLE_TABLE + "("
 				+ USER_ID_COLUMN + ", " + PROJECT_ID_COLUMN + ", "
 				+ ROLE_ID_COLUMN + ") values" + valuesToBeAdded.toString());
-		q.executeUpdate();
+		q.executeUpdate();*/
 	}
 
 	/**
@@ -86,6 +99,20 @@ public class ProjectDAO extends DAOImpl<Storable> {
 		int userID = user.getId();
 
 		return new ArrayList<Project>();
+	}
+	
+	@Transactional
+	public void addProjectUser(Project project) {
+		User user = project.getUserList().get(0);
+		String userID = String.valueOf(user.getId());
+		String projectID = String.valueOf(project.getId());
+		
+		String[] columns = {ROLE_ID_COLUMN, PROJECT_ID_COLUMN, USER_ID_COLUMN};
+		String[] values = {"1", projectID, userID};
+		
+		String insertStatement = SQLHelper.formInsertStatement(USER_PROJECT_ROLE_TABLE, columns, values);
+		Query q = em.createNativeQuery(insertStatement);
+		q.executeUpdate();
 	}
 
 }

@@ -43,6 +43,7 @@ public class ProjectController {
 
 		if (null != projectList) {
 			projectDAO.add(project);
+			projectDAO.addProjectUser(project);
 			projectList.add(project);
 		}
 
