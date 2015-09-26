@@ -20,16 +20,5 @@ public class HomeController {
 	@Autowired
 	private User user;
 
-	@RequestMapping(value ={"/", "home"}, method = RequestMethod.GET)
-	public String loadHome(ModelMap map, HttpSession session) {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		
-		if (null == session.getAttribute("user")) {
-			
-			session.removeAttribute("user");
-			map.addAttribute("user", user);
-		}
-		
-		return "home";
-	}
+
 }
