@@ -25,14 +25,14 @@ public class RegistrationLoginHelper {
 	 *            - Email address which user is using for login/registration
 	 * @return
 	 */
-	protected boolean userExists(String email) {
-		if (!StringHelper.isNullOrEmpty(email)) {
-			user = userDao.getUserByEmail(email);
-			if (null != user) {
-				return true;
+	protected User getAuthenticatedUser(User user) {
+		if (!StringHelper.isNullOrEmpty(user.getEmail())) {
+			this.user = userDao.getUserByEmail(user.getEmail());
+			if (null != this.user && passwordCorrect(user.getPassword())) {
+				return this.user;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**

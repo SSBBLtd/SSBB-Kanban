@@ -33,23 +33,16 @@ public class LoginController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(ModelMap map, HttpSession session, User user) {
 		if (user != null && !user.isLoggedIn()) {
-
-			String email = user.getEmail();
-			String password = user.getPassword();
-			if (!StringHelper.isNullOrEmpty(email)
-					|| !StringHelper.isNullOrEmpty(password)) {
-				if (loginHelper.userExists(email)
-						&& loginHelper.passwordCorrect(password)) {
-
-					user = userDAO.getUserByEmail(email);
+				user = loginHelper.getAuthenticatedUser(user);
+				if (null != user) {
 					user.setLoggedIn(true);
 					session.setAttribute(Constants.USER, user);
 
 					return loadLanding(map, session, user);
+					}
 				}
-			}
 			// TO DO set Error logic, user/password invalid
-		}
+		
 
 		return "redirect:/home";
 	}

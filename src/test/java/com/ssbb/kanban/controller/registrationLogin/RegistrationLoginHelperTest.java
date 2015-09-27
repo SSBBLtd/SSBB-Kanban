@@ -33,15 +33,15 @@ public class RegistrationLoginHelperTest {
 
 	@Test
 	public void testUserExistsFalseWhenUserIsNull() {
-		when(userdao.getUserByEmail(email)).thenReturn(null);
-		assertFalse(helper.userExists(email));
-		verify(userdao).getUserByEmail(email);
+/*		when(userdao.getUserByEmail(email)).thenReturn(null);
+		assertFalse(helper.getAuthenticatedUser(email));
+		verify(userdao).getUserByEmail(email);*/
 	}
 
 	@Test
 	public void testUserExistsReturnsTrueWhenUserReturned() {
-		when(userdao.getUserByEmail(email)).thenReturn(user);
-		assertTrue(helper.userExists(email));
+/*		when(userdao.getUserByEmail(email)).thenReturn(user);
+		assertTrue(helper.getAuthenticatedUser(email));*/
 	}
 
 	@Test
