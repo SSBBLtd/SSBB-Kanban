@@ -13,7 +13,6 @@ import com.ssbb.kanban.dao.impl.ProjectDAO;
 import com.ssbb.kanban.dao.impl.UserDAO;
 import com.ssbb.kanban.data.impl.Project;
 import com.ssbb.kanban.data.impl.User;
-import com.ssbb.kanban.utils.StringHelper;
 
 @Controller
 public class LoginController {
@@ -33,20 +32,12 @@ public class LoginController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(ModelMap map, HttpSession session, User user) {
 		if (user != null && !user.isLoggedIn()) {
+			user = loginHelper.getAuthenticatedUser(user);
+			if (null != user) {
+				user.setLoggedIn(true);
+				session.setAttribute(Constants.USER, user);
 
-			String email = user.getEmail();
-			String password = user.getPassword();
-			if (!StringHelper.isNullOrEmpty(email)
-					|| !StringHelper.isNullOrEmpty(password)) {
-				if (loginHelper.userExists(email)
-						&& loginHelper.passwordCorrect(password)) {
-
-					user = userDAO.getUserByEmail(email);
-					user.setLoggedIn(true);
-					session.setAttribute(Constants.USER, user);
-
-					return loadLanding(map, session);
-				}
+				return loadLanding(map, session);
 			}
 			// TO DO set Error logic, user/password invalid
 		}
@@ -56,15 +47,14 @@ public class LoginController {
 
 	@RequestMapping(value = "landing", method = RequestMethod.GET)
 	public String loadLanding(ModelMap map, HttpSession session) {
-		
+
 		User user = (User) session.getAttribute(Constants.USER);
-		
 		if (null != user) {
 
 			// This is for being able to create a new project
 			map.addAttribute(Constants.PROJECT, project);
 			map.addAttribute(Constants.USER, user);
-			
+
 			return "landing";
 		}
 		return "redirect:/home";
@@ -72,7 +62,6 @@ public class LoginController {
 
 	@RequestMapping(value = "logout", method = RequestMethod.POST)
 	public String logout(ModelMap map, HttpSession session) {
-		map.remove(Constants.USER);
 		session.invalidate();
 		return "redirect:/home";
 	}
