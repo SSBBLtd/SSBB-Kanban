@@ -61,10 +61,7 @@ public class LoginController {
 			// This is for being able to create a new project
 			map.addAttribute(Constants.PROJECT, project);
 			map.addAttribute(Constants.USER, user);
-			if (null == session.getAttribute(Constants.PROJECT_LIST)) {
-				session.setAttribute(Constants.PROJECT_LIST,
-						projectDAO.getProjectsByUser(user));
-			}
+			session.setAttribute(Constants.PROJECT_LIST, user.getProjects());
 			return "landing";
 		}
 		return "redirect:/home";

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -45,8 +46,8 @@ public class User implements Storable {
 	@Transient
 	private boolean loggedIn;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "user_project_role", joinColumns = { @JoinColumn(name = "upr_user_ID", referencedColumnName = "ID" )}, inverseJoinColumns = { @JoinColumn(name = "upr_project_ID", referencedColumnName = "ID")})
+	@OneToMany
+	@JoinTable(name = "user_project", joinColumns = { @JoinColumn(name = "user_ID", referencedColumnName = "ID")}, inverseJoinColumns = { @JoinColumn(name = "project_ID", referencedColumnName = "ID")})
 	private List<Project> projects;
 
 	
