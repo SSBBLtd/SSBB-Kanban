@@ -41,7 +41,7 @@ public class RegistrationController {
 	@RequestMapping(value = "register/register", method = RequestMethod.POST)
 	public String register(HttpSession session, User user) {
 		String email = user.getEmail();
-		if (!helper.userExists(email)) {
+		if (null == helper.getAuthenticatedUser(user)) {
 			user.setLoggedIn(true);
 			helper.hashpw(user);
 			userDAO.add(user);
