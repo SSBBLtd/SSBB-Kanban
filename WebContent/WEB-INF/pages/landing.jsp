@@ -8,10 +8,15 @@
 
 <h1>Welcome ${user.firstName} ${user.lastName}</h1>
 
-<c:forEach var="project" items="${user.projects}">
-	<c:out value="${project.name}" />
+	<c:forEach var="project" items="${user.projects}">
+	<f:form action="loadSelectedProject" method="POST"
+		commandName="project">
+		<f:input path="name" value="${project.name}" type="submit"
+			class="button"/>
+	</f:form>
 	<br>
-</c:forEach>
+	</c:forEach>
+
 
 <form action="home" method="GET">
 	<input class="button" type="submit" value="home" />

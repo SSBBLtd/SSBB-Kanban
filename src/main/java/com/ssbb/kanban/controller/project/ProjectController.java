@@ -1,7 +1,5 @@
 package com.ssbb.kanban.controller.project;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,23 @@ public class ProjectController {
 
 	@RequestMapping(value = "project", method = RequestMethod.GET)
 	public String loadProject(ModelMap map, HttpSession session) {
+
 		return "project";
+	}
+
+	@RequestMapping(value = "loadSelectedProject", method = RequestMethod.POST)
+	public String loadSelectedProject(ModelMap map, HttpSession session,
+			Project submittedProject) {
+
+		User user = (User) session.getAttribute(Constants.USER);
+		for (Project userProject : user.getProjects()) {
+			if (userProject.getName().equals(submittedProject.getName())) {
+				map.addAttribute(Constants.PROJECT, userProject);
+			}
+		}
+
+		return loadProject(map, session);
+
 	}
 
 	@RequestMapping(value = "createProject", method = RequestMethod.POST)
@@ -36,10 +50,16 @@ public class ProjectController {
 		// Add the user who create the project to the project's user list.
 		User user = (User) session.getAttribute(Constants.USER);
 		project.getUserList().add(user);
+
+		// persist the project
 		projectDAO.add(project);
+
+		// add the project to the list of the user's projects.
 		user.getProjects().add(project);
 
-		return "redirect:/project";
+		map.addAttribute(Constants.PROJECT, project);
+
+		return loadProject(map, session);
 	}
 
 }
