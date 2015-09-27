@@ -29,7 +29,6 @@ public class ProjectController {
 		return "project";
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "createProject", method = RequestMethod.POST)
 	public String createProject(ModelMap map, HttpSession session,
 			Project project) {
@@ -37,14 +36,8 @@ public class ProjectController {
 		// Add the user who create the project to the project's user list.
 		User user = (User) session.getAttribute(Constants.USER);
 		project.getUserList().add(user);
-
-		ArrayList<Project> projectList = (ArrayList<Project>) session
-				.getAttribute(Constants.PROJECT_LIST);
-
-		if (null != projectList) {
-			projectDAO.add(project);
-			projectList.add(project);
-		}
+		projectDAO.add(project);
+		user.getProjects().add(project);
 
 		return "redirect:/project";
 	}

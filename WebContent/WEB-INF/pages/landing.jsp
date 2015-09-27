@@ -7,6 +7,12 @@
 <h1>Landing Page</h1>
 
 <h1>Welcome ${user.firstName} ${user.lastName}</h1>
+
+<c:forEach var="project" items="${user.projects}">
+	<c:out value="${project.name}" />
+	<br>
+</c:forEach>
+
 <form action="home" method="GET">
 	<input class="button" type="submit" value="home" />
 </form>
@@ -20,7 +26,7 @@
 
 <div id="openModal" class="modalDialog">
 	<div>
-		<h1>Hello Mr pop window!</h1>
+		<h1>Create a new project</h1>
 		<a href="#close" title="Close" class="close">X</a>
 		<f:form action="createProject" method="POST" commandName="project">
 			<f:input type="text" path="name" />

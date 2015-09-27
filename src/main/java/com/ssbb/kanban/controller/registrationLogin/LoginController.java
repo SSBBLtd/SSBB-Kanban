@@ -45,7 +45,7 @@ public class LoginController {
 					user.setLoggedIn(true);
 					session.setAttribute(Constants.USER, user);
 
-					return loadLanding(map, session, user);
+					return loadLanding(map, session);
 				}
 			}
 			// TO DO set Error logic, user/password invalid
@@ -55,13 +55,16 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "landing", method = RequestMethod.GET)
-	public String loadLanding(ModelMap map, HttpSession session, User user) {
-		if (null != session.getAttribute(Constants.USER)) {
+	public String loadLanding(ModelMap map, HttpSession session) {
+		
+		User user = (User) session.getAttribute(Constants.USER);
+		
+		if (null != user) {
 
 			// This is for being able to create a new project
 			map.addAttribute(Constants.PROJECT, project);
 			map.addAttribute(Constants.USER, user);
-			session.setAttribute(Constants.PROJECT_LIST, user.getProjects());
+			
 			return "landing";
 		}
 		return "redirect:/home";

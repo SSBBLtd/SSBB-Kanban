@@ -2,21 +2,17 @@ package com.ssbb.kanban.data.impl;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.ssbb.kanban.data.Storable;
@@ -46,7 +42,7 @@ public class User implements Storable {
 	@Transient
 	private boolean loggedIn;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_project", joinColumns = { @JoinColumn(name = "user_ID", referencedColumnName = "ID")}, inverseJoinColumns = { @JoinColumn(name = "project_ID", referencedColumnName = "ID")})
 	private List<Project> projects;
 
