@@ -1,0 +1,25 @@
+.tableWrapper {
+	
+	width: 90%;
+	/* background: rgba(0, 0, 0, 0.8); */
+	
+}
+
+
+
+.tableContent{
+	width:100%
+	border: 1px solid black;
+}
+
+.tableContent tr{
+	width:100%;
+	background: rgb(100,100,100);
+}
+
+.tableContent th{
+	width:30px;	
+	border: 1px solid black;
+	/* width: 33%; */
+}
+
