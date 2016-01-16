@@ -1,5 +1,6 @@
 package com.ssbb.kanban.data.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -48,6 +49,9 @@ public class User implements Storable {
 
 	
 	public List<Project> getProjects() {
+		if(null == projects){
+			projects = new ArrayList<Project>();
+		}
 		return projects;
 	}
 
