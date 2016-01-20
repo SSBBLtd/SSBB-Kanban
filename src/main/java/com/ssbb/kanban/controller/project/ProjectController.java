@@ -11,79 +11,87 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ssbb.kanban.Constants;
 import com.ssbb.kanban.dao.impl.ProjectDAO;
 import com.ssbb.kanban.data.impl.Project;
+import com.ssbb.kanban.data.impl.Task;
 import com.ssbb.kanban.data.impl.User;
 import com.ssbb.kanban.utils.UserHelper;
 
 @Controller
 public class ProjectController {
 
-    @Autowired
-    private Project project;
+	@Autowired
+	private Project project;
 
-    @Autowired
-    private ProjectDAO projectDAO;
+	@Autowired
+	private ProjectDAO projectDAO;
 
-    private final String PAGE_ID = "project";
+	@Autowired
+	private Task task;
 
-    /**
-     * This method is called when a user selects a project from their list of
-     * projects. This will find the project selected and add it to model map to
-     * be used by the front end to be used by the front end to display that
-     * project page.
-     * 
-     * @param map
-     * @param session
-     * @param submittedProject
-     * @return String Page ID to load
-     */
-    @RequestMapping(value = "loadSelectedProject", method = RequestMethod.POST)
-    public String loadSelectedProject(ModelMap map, HttpSession session, Project submittedProject) {
+	private final String PAGE_ID = "project";
 
-        //get user from the session.
-        User user = (User) session.getAttribute(Constants.USER);
+	/**
+	 * This method is called when a user selects a project from their list of
+	 * projects. This will find the project selected and add it to model map to
+	 * be used by the front end to be used by the front end to display that
+	 * project page.
+	 * 
+	 * @param map
+	 * @param session
+	 * @param submittedProject
+	 * @return String Page ID to load
+	 */
+	@RequestMapping(value = "loadSelectedProject", method = { RequestMethod.POST, RequestMethod.GET })
+	public String loadSelectedProject(ModelMap map, HttpSession session, Project submittedProject) {
 
-        //get the project from the user's projects.
-        Project projectSelected = UserHelper.getUserSelectProjectByName(user, submittedProject.getName());
+		// get user from the session.
+		User user = (User) session.getAttribute(Constants.USER);
 
-        if (projectSelected == null) {
-            //TO DO, must return some error/error page.
-        }
+		// get the project from the user's projects.
+		Project projectSelected = UserHelper.getUserSelectProjectByName(user, submittedProject.getName());
 
-        //add project to map to be displayed.
-        map.addAttribute(Constants.PROJECT, projectSelected);
+		if (projectSelected == null) {
+			// TO DO, must return some error/error page.
+		}
 
-        return PAGE_ID;
+		// add project to map to be displayed.
+		map.addAttribute(Constants.PROJECT, projectSelected);
 
-    }
+		// TODO added an empty task to be used in the task creation, method
+		// needs refining so empty tasks are always available.
+		map.addAttribute(Constants.TASK, task);
 
-    /**
-     * Method is called when a user selects to create a new project. This will
-     * get the project created from the front end and persist it into the
-     * database as well as add it to the user's list of projects. The project
-     * created will then be added to the model map to be used by the front end
-     * to display that project page.
-     * 
-     * @param map
-     * @param session
-     * @param project
-     * @return String Page ID to load
-     */
-    @RequestMapping(value = "createProject", method = RequestMethod.POST)
-    public String createProject(ModelMap map, HttpSession session, Project project) {
+		return PAGE_ID;
 
-        // Add the user who create the project to the project's user list.
-        User user = (User) session.getAttribute(Constants.USER);
-        project.getUserList().add(user);
+	}
 
-        // persist the project
-        projectDAO.add(project);
+	/**
+	 * Method is called when a user selects to create a new project. This will
+	 * get the project created from the front end and persist it into the
+	 * database as well as add it to the user's list of projects. The project
+	 * created will then be added to the model map to be used by the front end
+	 * to display that project page.
+	 * 
+	 * @param map
+	 * @param session
+	 * @param project
+	 * @return String Page ID to load
+	 */
+	@RequestMapping(value = "createProject", method = RequestMethod.POST)
+	public String createProject(ModelMap map, HttpSession session, Project project) {
 
-        // add the project to the list of the user's projects.
-        user.getProjects().add(project);
+		// Add the user who create the project to the project's user list.
+		User user = (User) session.getAttribute(Constants.USER);
+		project.getUserList().add(user);
 
-        map.addAttribute(Constants.PROJECT, project);
+		// persist the project
+		projectDAO.add(project);
 
-        return PAGE_ID;
-    }
+		// add the project to the list of the user's projects.
+		user.getProjects().add(project);
+
+		map.addAttribute(Constants.PROJECT, project);
+
+		return PAGE_ID;
+	}
 
 }

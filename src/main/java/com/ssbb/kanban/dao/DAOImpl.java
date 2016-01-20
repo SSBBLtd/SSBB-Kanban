@@ -60,7 +60,7 @@ public class DAOImpl<Entity extends Storable> {
 	@SuppressWarnings("rawtypes")
 	public List getAll(Class className) {
 		Query q = em.createNativeQuery(
-				"select * from " + className.getSimpleName(), className);
+				"select * from " + className.getSimpleName().toLowerCase(), className);
 		return q.getResultList();
 	}
 
