@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="template" template="/WEB-INF/template_pages/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/template_pages/templateHeader.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/template_pages/templateContent.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/template_pages/templateFooter.jsp" />
+	</definition>
+
+	<definition name="home" extends="template">
+		<put-attribute name="title" value = "SSBB Kanban" />
+		<put-attribute name="content" value="/WEB-INF/pages/home.jsp" />
+	</definition>
+	
+	<definition name="landing" extends="template">
+		<put-attribute name="title" value = "Your Account" />
+		<put-attribute name="content" value="/WEB-INF/pages/landing.jsp" />
+	</definition>
+	
+	<definition name="register" extends="template">
+		<put-attribute name="title" value = "Register" />
+		<put-attribute name="content" value="/WEB-INF/pages/register.jsp" />
+	</definition>
+	
+	<definition name="project" extends="template">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="content" value="/WEB-INF/pages/project.jsp" />
+	</definition>
+
+</tiles-definitions>
