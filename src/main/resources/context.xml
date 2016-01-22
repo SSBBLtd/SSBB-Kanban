@@ -51,12 +51,11 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-
-	<bean id="DAOImpl" class="com.ssbb.kanban.dao.DAOImpl" />
-
 	<bean id="UserDAO" class="com.ssbb.kanban.dao.impl.UserDAO" />
 
 	<bean id="ProjectDAO" class="com.ssbb.kanban.dao.impl.ProjectDAO" />
+
+	<bean id="TaskDAO" class="com.ssbb.kanban.dao.impl.TaskDAO" />
 
 	<bean id="RoleDAO" class="com.ssbb.kanban.dao.impl.RoleDAO" />
 
@@ -66,6 +65,10 @@
 
 	<bean id="project" class="com.ssbb.kanban.data.impl.Project"
 		scope="prototype" />
+
+	<bean id="task" class="com.ssbb.kanban.data.impl.Task" scope="prototype" />
+
+	<bean id="status" class="com.ssbb.kanban.data.impl.Status" scope="prototype" />
 
 	<bean id="registrationLoginHelper"
 		class="com.ssbb.kanban.controller.registrationLogin.RegistrationLoginHelper" />

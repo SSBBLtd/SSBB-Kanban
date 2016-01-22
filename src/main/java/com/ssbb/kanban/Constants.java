@@ -10,4 +10,6 @@ public class Constants {
 
 	public final static String PROJECT_LIST = "ProjectList";
 
+	public final static String TASK = "task";
+
 }
