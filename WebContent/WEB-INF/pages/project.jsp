@@ -10,7 +10,7 @@
 <h1>PROJECTS!</h1>
 
 <h1>This is project: ${project.name}</h1>
-<p>${project.description}</p>
+<p>Description: <br/> ${project.description}</p>
 
 <br />
 <a href="#openModal">Create a new task</a>

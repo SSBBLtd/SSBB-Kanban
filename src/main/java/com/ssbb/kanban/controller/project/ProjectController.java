@@ -55,6 +55,7 @@ public class ProjectController {
 
 		// add project to map to be displayed.
 		map.addAttribute(Constants.PROJECT, projectSelected);
+		session.setAttribute(Constants.PROJECT, projectSelected);
 
 		// TODO added an empty task to be used in the task creation, method
 		// needs refining so empty tasks are always available.
